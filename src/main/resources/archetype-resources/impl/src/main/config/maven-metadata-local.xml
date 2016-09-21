@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>org.opendaylight.maple</groupId>
+  <artifactId>maplemain-impl</artifactId>
+  <version>1.0.0-Beryllium-SR2</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20150909112357</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <classifier>config</classifier>
+        <extension>xml</extension>
+        <value>1.0.0-Beryllium-SR2</value>
+        <updated>20150909112357</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

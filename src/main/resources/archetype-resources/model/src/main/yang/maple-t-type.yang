@@ -1,0 +1,15 @@
+module maple-t-type {
+    namespace "urn:opendaylight:params:xml:ns:yang:maple:t:type";
+	prefix "mtt";
+
+	import maple-tracetree {prefix mt;}
+	organization "Maple";
+	description "augment maple tracetree to support t type";
+
+    augment "/mt:tracetrees/mt:maple-apps/mt:ttnodes"{
+        when "type == 'T'";
+	    leaf field {
+			type string;
+		}
+    }
+}

@@ -1,0 +1,43 @@
+module maple-tracetree {
+    namespace "urn:opendaylight:params:xml:ns:yang:maple:tracetree";
+	prefix "mt";
+
+	organization "Maple";
+	description "a per switch tracetree model";
+
+	container tracetrees {
+        list maple-apps {
+            key "app-name";
+			leaf app-name {
+                type string;
+			}
+			list ttnodes {
+                key "id";
+				leaf id {
+					type string;
+				}
+				leaf type {
+					type string;
+				}
+			}
+			list ttlinks {
+                key "id";
+				leaf id {
+					type string;
+				}
+				leaf predicate-id {
+					type string;
+				}
+				leaf operator {
+					type string;
+				}
+				leaf condition {
+					type string;
+				}
+				leaf destination-id {
+					type string;
+				}
+			}
+		}
+	}
+}

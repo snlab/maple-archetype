@@ -1,0 +1,19 @@
+module maple-v-type {
+  namespace "urn:opendaylight:params:xml:ns:yang:maple:v:type";
+	prefix "mvt";
+
+	import maple-tracetree {prefix mt;}
+	organization "Maple";
+	description "augment maple tracetree to support v type";
+
+	revision 2015-11-14 {
+		description "initial version of tracetree v node";
+	}
+
+  augment "/mt:tracetree/mt:ttnode"{
+    when "type == 'V'";
+    leaf field {
+	    type string;
+ 	  }
+  }
+}
