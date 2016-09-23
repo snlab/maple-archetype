@@ -11,7 +11,7 @@
     <requiredProperty key="copyright" />
     <requiredProperty key="copyrightYear">
         <defaultValue>
-            2015
+            2016
         </defaultValue>
     </requiredProperty>
     <requiredProperty key="version">
@@ -19,6 +19,8 @@
             1.0.0-SNAPSHOT
         </defaultValue>
     </requiredProperty>
+      <requiredProperty key="appName">
+      </requiredProperty>
   </requiredProperties>
   <fileSets>
 
@@ -37,12 +39,12 @@
     </fileSet>
 
     <!-- karaf distro -->
-    <fileSet filtered="true" encoding="UTF-8">
+<!--    <fileSet filtered="true" encoding="UTF-8">
         <directory>karaf</directory>
         <includes>
             <include>pom.xml</include>
         </includes>
-    </fileSet>
+    </fileSet>-->
 
     <!-- features -->
 
@@ -93,7 +95,7 @@
      </fileSet>
 
      <!-- api -->
-
+<!--
      <fileSet filtered="true" encoding="UTF-8">
        <directory>api</directory>
        <includes>
@@ -105,18 +107,18 @@
        <includes>
          <include>**/*.yang</include>
        </includes>
-     </fileSet>
+     </fileSet>-->
 
      <!-- artifacts -->
-     <fileSet filtered="true" encoding="UTF-8">
+<!--     <fileSet filtered="true" encoding="UTF-8">
        <directory>artifacts</directory>
        <includes>
          <include>pom.xml</include>
        </includes>
-     </fileSet>
+     </fileSet>-->
 
      <!-- it -->
-     <fileSet filtered="true" encoding="UTF-8">
+<!--     <fileSet filtered="true" encoding="UTF-8">
         <directory>it</directory>
         <includes>
             <include>pom.xml</include>
@@ -127,6 +129,6 @@
         <includes>
             <include>**/*.java</include>
          </includes>
-    </fileSet>
+    </fileSet>-->
   </fileSets>
 </archetype-descriptor>
