@@ -10,6 +10,7 @@ package org.opendaylight.mapleapp.impl;
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.sal.binding.api.NotificationProviderService;
 import org.opendaylight.maple.core.increment.MapleCore;
+import org.opendaylight.maple.core.increment.app.MapleAppBase;
 import org.opendaylight.maple.core.increment.packet.Ethernet;
 import org.opendaylight.maple.core.increment.tracetree.*;
 import org.opendaylight.controller.sal.binding.api.BindingAwareBroker.ProviderContext;
@@ -37,19 +38,55 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
 
     MapleCore mapleCore;
 
-    ${appName} mapleApp;
-
     DataBroker db;
 
     //M3 mapleApp;
 
 
+    MapleAppBase topMapleApp;
+
     FlowManagerWX fmwx;
+
+    String chain;
+
+    boolean needSysApp;
+
+    public MapleappProvider(String chain, boolean needSysApp) {
+        this.chain = chain;
+        this.needSysApp = needSysApp;
+    }
+
+
     @Override
     public void onSessionInitiated(ProviderContext session) {
         this.mapleCore = MapleCore.allocateMapleCore();
+        if (needSysApp) {
+            mapleCore.setupSystemApps();
+        }
+        if (chain.contains(",")){
+            String[] apps = chain.split(",");
+            for (int i = apps.length - 1; i >= 0; i--) {
+                String name = apps[i];
+                try {
+                    MapleAppBase ap = (MapleAppBase) Class.forName("org.opendaylight.mapleapp.impl." + name).newInstance();
+                    this.topMapleApp = ap;
+                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                System.out.println("maple app name: " + name);
+            }
+        } else {
+            MapleAppBase ap = null;
+            try {
+                ap = (MapleAppBase) Class.forName("org.opendaylight.mapleapp.impl." + chain).newInstance();
+            } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            this.topMapleApp = ap;
+        }
         LOG.info("MapleappProvider Session Initiated");
-        mapleApp = new  ${appName}();
         pps = session.getRpcService(PacketProcessingService.class);
         db = session.getSALService(DataBroker.class);
         fmwx = new FlowManagerWX(db, pps);
@@ -92,8 +129,9 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
             this.mapleCore.getPktHash2PayLoadPort().put(pktHash
                     , new PayLoadAndPort(payload, new Port(tpIdString)));
 
+            topMapleApp.preWork(maplePkt);
 
-            mapleApp.onPacket(maplePkt);
+            topMapleApp.onPacket(maplePkt);
 
             Trace trace = new Trace();
 

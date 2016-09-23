@@ -22,6 +22,15 @@ module mapleapp-impl {
     augment "/config:modules/config:module/config:configuration" {
         case mapleapp {
             when "/config:modules/config:module/config:type = 'mapleapp'";
+
+            leaf chain {
+                type string;
+            }
+
+            leaf need-system-app {
+                type boolean;
+            }
+
             container broker {
                 uses config:service-ref {
                     refine type {
