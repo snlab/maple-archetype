@@ -102,7 +102,7 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
             }
             trace.addTraceItem(maplePkt.getInstruction().toItem(), pktHash);
 
-            fmwx.sendPacket(payload, port, maplePkt.getRouteAction());
+            fmwx.sendPacket(payload, port, maplePkt.route());
 
             //LOG.info("lastNode in trace: " + trace.lastNode.toString());
 

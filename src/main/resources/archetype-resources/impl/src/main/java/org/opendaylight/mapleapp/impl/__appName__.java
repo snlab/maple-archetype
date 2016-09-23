@@ -24,39 +24,10 @@ public class ${appName} extends MapleAppBase {
 
 	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger( ${appName}.class);
 	ShortestPath sp;
-	private static class Singleton {
-		private static  ${appName} instance = new  ${appName}();
-	}
-	public static ${appName} getInstance() {
-		return Singleton.instance;
-	}
 
 	@Override
 	public void onPacket(MaplePacket pkt) {
-		LOG.info("External MapleApp is running");
-		if (pkt.ethTypeIs(Ethernet.TYPE_IPv4)) {
-			int srcIP = pkt.IPv4Src();
-			int dstIP = pkt.IPv4Dst();
-			
-			for (Map.Entry<Integer, Port> entry: this.mapleCore.getHost2swTable().entrySet()) {
-				System.out.println("hostIP: " + IPv4.fromIPv4Address(entry.getKey()));
-				System.out.println("Port: " + entry.getValue().getId());
-			}
-			
-			Topology topo = (Topology)readData("/root/network-topology/topology");
-			sp = new ShortestPath();
-			sp.setLinks(topo.getLink());
-			
-			Port srcPort = this.mapleCore.getHost2swTable().get(srcIP);
-			Port dstPort = this.mapleCore.getHost2swTable().get(dstIP);
-			
-			
-			String lastTpId = dstPort.getId();
-			System.out.println("it is running external maple app");
-			pkt.setRouteAction(new Path(sp.getFormattedPath(srcPort, dstPort), lastTpId));
-		} else {
-			//make the next maple app handle this pkt
-			this.passToNext(pkt);
-		}
+		LOG.info("Hello world from MapleApp.");
+		/* write your Maple App here */
 	}
 }
