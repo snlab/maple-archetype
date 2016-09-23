@@ -5,12 +5,12 @@
   <parent>
      <groupId>org.opendaylight.controller.archetypes</groupId>
      <artifactId>archetypes-parent</artifactId>
-     <version>0.3.2-Beryllium-SR2</version>
+     <version>0.3.3-Beryllium-SR3</version>
   </parent>
 
   <groupId>org.opendaylight.maple</groupId>
   <artifactId>maple-archetype</artifactId>
-  <version>1.0.0-Beryllium-SR2</version>
+  <version>1.0.0-Beryllium-SR3</version>
   <packaging>maven-archetype</packaging>
 
   <name>maple-archetype</name>
