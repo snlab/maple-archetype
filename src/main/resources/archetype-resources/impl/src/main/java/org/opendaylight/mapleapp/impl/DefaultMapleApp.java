@@ -70,7 +70,7 @@ public class DefaultMapleApp extends MapleAppBase {
                     setAction(arpKey, pkt);
                 } else {
                     LOG.info("drop this dublicated arp");
-                    pkt.setRoute(Route.DROP);
+                    pkt.setRoute("null");
                 }
             }
         }else{
