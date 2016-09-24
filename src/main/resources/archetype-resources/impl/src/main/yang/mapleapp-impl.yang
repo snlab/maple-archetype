@@ -27,10 +27,6 @@ module mapleapp-impl {
                 type string;
             }
 
-            leaf need-system-app {
-                type boolean;
-            }
-
             container broker {
                 uses config:service-ref {
                     refine type {
