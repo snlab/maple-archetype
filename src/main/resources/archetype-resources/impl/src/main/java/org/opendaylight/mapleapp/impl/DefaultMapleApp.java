@@ -8,6 +8,7 @@
 package org.opendaylight.mapleapp.impl;
 
 import org.opendaylight.maple.core.increment.app.MapleAppBase;
+import org.opendaylight.maple.core.increment.app.systemApps.Host2PortEntry;
 import org.opendaylight.maple.core.increment.packet.ARP;
 import org.opendaylight.maple.core.increment.packet.Ethernet;
 import org.opendaylight.maple.core.increment.packet.IPv4;
@@ -24,7 +25,7 @@ import java.util.Map;
 
 public class DefaultMapleApp extends MapleAppBase {
 
-    private final static Logger LOG = LoggerFactory.getLogger(ARPHandlingMapleApp.class);
+    private final static Logger LOG = LoggerFactory.getLogger(DefaultMapleApp.class);
 
     private Map<String, Long> arp2time;
 
@@ -32,7 +33,7 @@ public class DefaultMapleApp extends MapleAppBase {
 
     private static final String HOST_TABLE_URL = "/root/host-table";
 
-    public ARPHandlingMapleApp() {
+    public DefaultMapleApp() {
         arp2time = new HashMap<String, Long>();
         inMemoryHost2PortTable = new HashMap<Integer, String>();
     }

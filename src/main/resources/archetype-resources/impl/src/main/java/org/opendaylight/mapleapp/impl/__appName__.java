@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class ${appName} extends MapleAppBase {
 
-	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger( ${appName}.class);
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(${appName}.class);
 	ShortestPath sp;
 
 	@Override
