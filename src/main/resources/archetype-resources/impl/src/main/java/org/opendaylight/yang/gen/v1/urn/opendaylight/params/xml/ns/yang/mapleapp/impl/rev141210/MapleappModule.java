@@ -26,8 +26,7 @@ public class MapleappModule extends org.opendaylight.yang.gen.v1.urn.opendayligh
     @Override
     public java.lang.AutoCloseable createInstance() {
         String chain = getChain();
-        boolean needSysApp = getNeedSystemApp();
-        MapleappProvider provider = new MapleappProvider(chain, needSysApp);
+        MapleappProvider provider = new MapleappProvider(chain);
         getBrokerDependency().registerProvider(provider);
         return provider;
     }

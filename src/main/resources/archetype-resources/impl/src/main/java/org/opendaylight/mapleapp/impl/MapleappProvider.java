@@ -49,26 +49,21 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
 
     String chain;
 
-    boolean needSysApp;
 
-    public MapleappProvider(String chain, boolean needSysApp) {
+    public MapleappProvider(String chain) {
         this.chain = chain;
-        this.needSysApp = needSysApp;
     }
 
 
     @Override
     public void onSessionInitiated(ProviderContext session) {
         this.mapleCore = MapleCore.allocateMapleCore();
-        if (needSysApp) {
-            mapleCore.setupSystemApps();
-        }
         if (chain.contains(",")){
             String[] apps = chain.split(",");
             for (int i = apps.length - 1; i >= 0; i--) {
                 String name = apps[i];
                 try {
-                    MapleAppBase ap = (MapleAppBase) Class.forName("org.opendaylight.mapleapp.impl." + name).newInstance();
+                    MapleAppBase ap = (MapleAppBase) Class.forName(name).newInstance();
                     this.topMapleApp = ap;
                 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
                     // TODO Auto-generated catch block
