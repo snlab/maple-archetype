@@ -130,7 +130,9 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
 
             Trace trace = new Trace();
 
-            for (TraceItem ti : maplePkt.itemList) {
+            List<TraceItem> compressedItemList = Trace.compress(maplePkt.itemList);
+
+            for (TraceItem ti : compressedItemList) {
                 trace.addTraceItem(ti, pktHash);
             }
             trace.addTraceItem(maplePkt.getInstruction().toItem(), pktHash);
