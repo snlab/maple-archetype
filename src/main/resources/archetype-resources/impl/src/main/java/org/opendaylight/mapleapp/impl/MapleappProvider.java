@@ -25,6 +25,7 @@ import org.opendaylight.yangtools.yang.binding.NotificationListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 
 public class MapleappProvider implements BindingAwareProvider, AutoCloseable, PacketProcessingListener {
 
