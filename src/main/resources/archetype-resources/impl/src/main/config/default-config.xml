@@ -17,7 +17,8 @@ and is available at http://www.eclipse.org/legal/epl-v10.html
     <data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
       <modules xmlns="urn:opendaylight:params:xml:ns:yang:controller:config">
         <module>
-          <chain>org.opendaylight.mapleapp.impl.${appName}, org.opendaylight.mapleapp.impl.DefaultMapleApp</chain>
+          <chain>${appName}</chain>
+          <need-system-app>true</need-system-app>
           <type xmlns:prefix="urn:opendaylight:params:xml:ns:yang:mapleapp:impl">prefix:mapleapp</type>
           <name>mapleapp-impl</name>
           <broker>
