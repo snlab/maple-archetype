@@ -5,6 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
+
 package org.opendaylight.mapleapp.impl;
 
 import java.util.Map;
@@ -39,13 +40,13 @@ public class ${appName} extends MapleAppBase {
             int srcIP = pkt.IPv4Src();
             int dstIP = pkt.IPv4Dst();
 
-            if(srcIP==H1_IP&&dstIP==H3_IP||srcIP==H3_IP&&dstIP==H1_IP) {
+            if (srcIP == H1_IP && dstIP == H3_IP || srcIP == H3_IP && dstIP == H1_IP) {
                 Topology topo = (Topology) readData(TOPO_URL);
                 Map<Integer, Port> hostTable = (Map<Integer, Port>) readData(HOST_TABLE_URL);
                 Port srcPort = hostTable.get(srcIP);
                 Port dstPort = hostTable.get(dstIP);
                 pkt.setRoute(MapleUtil.shortestPath(topo.getLink(), srcPort, dstPort));
-            }else{
+            } else {
                 pkt.setRoute(Route.DROP);
             }
 

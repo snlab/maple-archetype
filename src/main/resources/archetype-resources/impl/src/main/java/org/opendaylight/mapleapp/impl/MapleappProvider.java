@@ -5,6 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
+
 package org.opendaylight.mapleapp.impl;
 
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
@@ -61,7 +62,7 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
     @Override
     public void onSessionInitiated(ProviderContext session) {
         this.mapleCore = MapleCore.allocateMapleCore();
-        if(this.mapleCore == null) {
+        if (this.mapleCore == null) {
             LOG.info("MapleCore is empty in External Mapleapp");
         }
         if (needSysApp) {
@@ -108,7 +109,9 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
                 IPv4 pIP = (IPv4) frame.getPayload();
                 int srcIp = pIP.getSourceAddress();
                 String srcIpString = IPv4.fromIPv4Address(srcIp);
-                if (!srcIpString.startsWith("10"))return;
+                if (!srcIpString.startsWith("10")){
+                    return;
+                }
             }
             String packetType = null;
             if (frame.getEtherType() == Ethernet.TYPE_ARP) {
@@ -135,7 +138,7 @@ public class MapleappProvider implements BindingAwareProvider, AutoCloseable, Pa
             }
             trace.addTraceItem(maplePkt.getInstruction().toItem(), pktHash);
             fmwx.sendPacket(payload, port, maplePkt.route());
-            mapleCore.updateTrace(pktHash, trace);
+            mapleCore.updateTrace(maplePkt, trace);
             LOG.info("finish update trace");
 
             // start to handle data change for topology
